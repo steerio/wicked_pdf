@@ -19,7 +19,7 @@ module WickedPdf
     end
 
     def wicked_pdf_image_location img
-      "file://#{Rails.root.join('public', img)}"
+      params[:debug].present? ? img : "file://#{Rails.root.join('public')}#{img}"
     end
 
   end
