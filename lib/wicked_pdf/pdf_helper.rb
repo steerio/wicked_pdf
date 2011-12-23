@@ -80,7 +80,8 @@ module WickedPdf
         if options[hf] && options[hf][:html] && options[hf][:html][:template]
           @hf_tempfiles = [] if ! defined?(@hf_tempfiles)
           @hf_tempfiles.push(tf=Tempfile.new("wicked_#{hf}_pdf.html") )
-          tf.write render_to_string_without_wicked_pdf(:template => options[hf][:html][:template], :layout => options[:layout], :locals => options[hf][:html][:locals])
+          options[hf][:html][:layout] ||=  options[:layout]
+          tf.write render_to_string_without_wicked_pdf(:template => options[hf][:html][:template], :layout => options[hf][:html][:layout], :locals => options[hf][:html][:locals])
           tf.flush
           options[hf][:html].delete(:template)
           options[hf][:html][:url] = "file://#{tf.path}"
