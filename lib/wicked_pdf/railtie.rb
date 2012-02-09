@@ -6,7 +6,7 @@ module WickedPdf
     initializer "wicked_pdf.register" do |app|
       ActionController::Base.send :include, PdfHelper
       ActionView::Base.send :include, Helper
-      Mime::Type.register 'application/pdf', :pdf
+      Mime::Type.register('application/pdf', :pdf) unless Mime::Type.lookup_by_extension(:pdf)
     end
   end
 end

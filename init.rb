@@ -11,4 +11,4 @@ unless ActionView::Base.instance_methods.collect(&:to_s).include? "wicked_pdf_st
   ActionView::Base.send :include, WickedPdfHelper
 end
 
-Mime::Type.register 'application/pdf', :pdf
+Mime::Type.register('application/pdf', :pdf) unless Mime::Type.lookup_by_extension(:pdf)
